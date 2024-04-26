@@ -25,7 +25,7 @@ public static class StaticData
     {
         get
         {
-            return $"{AssetRootPath}/Data/{currentModuleCode}/EquipmentParts";
+            return $"{AssetRootPath}/Data/{currentModuleCode}";
         }
     }
 }

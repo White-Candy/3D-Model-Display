@@ -24,7 +24,7 @@ public static class Tools
             if (string.IsNullOrEmpty(filter))
             {
                 result.Add(file.FullName);
-                Debug.Log(file.FullName);
+                //Debug.Log(file.FullName);
             }
             else
             {

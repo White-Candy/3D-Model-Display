@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class ModelAction : BaseAction
 {
     private static ModelAction instance;
+
+    private GameObject currentModel;
 
     public Dictionary<string, GameObject> m_ModelPartDic = new Dictionary<string, GameObject>();
 
@@ -34,14 +38,30 @@ public class ModelAction : BaseAction
         throw new System.NotImplementedException();
     }
 
+    private void ModelDisplay(string name)
+    {
+        if (currentModel != null)
+        {
+            GameObject.Destroy(currentModel);
+        }
+        Debug.Log(name);
+        GameObject go;
+        m_ModelPartDic.TryGetValue(name, out go);
+        GameObject obj = GameObject.Instantiate(go);
+        CameraMovementController.Instance.UpdateData(obj.transform);
+        currentModel = obj;
+    }
+
     private IEnumerator InitAsset()
     {
         yield return MonoMgr.Instance.StartCoroutine(LoadAsset());
+        ModelDisplay(m_ModelPartDic.First().Key);
     }
 
     private IEnumerator LoadAsset()
     {
         List<string> AssetsPath = Tools.GetFileList(StaticData.EquipmentPartsPath);
+        //Debug.Log(StaticData.EquipmentPartsPath);
         if (AssetsPath == null ||  AssetsPath.Count == 0)
         {
             Debug.Log("Assets not load!");
