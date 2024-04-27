@@ -380,14 +380,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_target: {fileID: 0}
-  m_RotateSpeed: 10
+  m_RotateSpeed: 500
   m_RotLerpSpeed: 10
   m_Distance: 5
   m_MinYawAngle: -360
   m_MaxYawAngle: 360
-  m_MinPitchAngle: 1
+  m_MinPitchAngle: -45
   m_MaxPitchAngle: 90
-  isAutoRotate: 1
+  isAutoRotate: 0
   m_AutoRotateTime: 2
   m_AutoRotateSpeed: 10
   m_ZoomSpeed: 50

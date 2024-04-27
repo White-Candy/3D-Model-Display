@@ -40,6 +40,7 @@ public class ModelAction : BaseAction
 
     private void ModelDisplay(string name)
     {
+        Debug.Log("ModelDisplay: " + name);
         if (currentModel != null)
         {
             GameObject.Destroy(currentModel);
@@ -62,7 +63,7 @@ public class ModelAction : BaseAction
     {
         List<string> AssetsPath = Tools.GetFileList(StaticData.EquipmentPartsPath);
         //Debug.Log(StaticData.EquipmentPartsPath);
-        if (AssetsPath == null ||  AssetsPath.Count == 0)
+        if (AssetsPath == null || AssetsPath.Count == 0)
         {
             Debug.Log("Assets not load!");
             yield break;
@@ -72,9 +73,9 @@ public class ModelAction : BaseAction
         foreach (var path in AssetsPath) 
         {
             string name = Path.GetFileNameWithoutExtension(path);
-
+            Debug.Log("path: " + name);
             AsyncResult result = AssetConsole.Instance.LoadBundle<GameObject>(path, name, true);
-            while (result != null)
+            while (!result.isDone)
             {
                 yield return null;
             }

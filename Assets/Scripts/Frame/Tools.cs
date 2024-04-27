@@ -7,7 +7,7 @@ public static class Tools
 {
     public static List<string> GetFileList(string path, string filter = "")
     {
-        if (string.IsNullOrEmpty(filter)) filter = filter.ToLower();
+        if (!string.IsNullOrEmpty(filter)) filter = filter.ToLower();
 
         List<string> result = new List<string>();
         if (!Directory.Exists(path)) return result;

@@ -5,7 +5,7 @@ using UnityEngine;
 public static class StaticData
 {
     private static string assetRootPath;
-    public static string currentModuleCode = "Module";
+    public static string currentModuleCode = "Modules";
 
     public static string AssetRootPath
     {

@@ -113,9 +113,9 @@ public class AssetConsole : Singleton<AssetConsole>
     /// <param name="name"><×ÊÔ´Ãû³Æ/param>
     /// <returns></returns>
     public AsyncResult LoadBundle<T>(string path, string name, bool isTemp = true)
-   {
+    {
        return LoadBundle(path, isTemp, new AssetInfo(typeof(T), name));
-   }
+    }
 }
 
 public class AssetList

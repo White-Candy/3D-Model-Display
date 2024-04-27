@@ -10,7 +10,7 @@ public class CameraMovementController : Singleton<CameraMovementController>
 
     
 
-    [SerializeField]private float m_RotateSpeed = 10f;//旋转速度
+    [SerializeField]private float m_RotateSpeed = 500f;//旋转速度
 
     [SerializeField]private float m_RotLerpSpeed = 10f;
     
@@ -18,7 +18,7 @@ public class CameraMovementController : Singleton<CameraMovementController>
 
     [SerializeField]private float m_MinYawAngle = -360f;
     [SerializeField]private float m_MaxYawAngle = 360f;
-    [SerializeField]private float m_MinPitchAngle = 1f;
+    [SerializeField]private float m_MinPitchAngle = -45f;
     [SerializeField]private float m_MaxPitchAngle = 90f;
     
     [SerializeField]private bool isAutoRotate;
