@@ -33,10 +33,12 @@ public class AssetConsole : Singleton<AssetConsole>
             if (obj != null)
             {
                 result.result[resultKey] = obj;
+                //Debug.Log("obj is not null: " + resultKey);
             }
             else
             {
                 isDone = false;
+                //Debug.Log("obj is null: " + resultKey);
             }
         }
 
@@ -155,11 +157,11 @@ public class AssetList
         }
     }
 
-    public Object GetValue(string val)
+    public Object GetValue(string key)
     {
         Object obj = null;
-        if (obj == null) obj = CollectionList.GetValue(val);
-        if (obj == null) obj = TempCollectionList.GetValue(val);
+        if (obj == null) obj = CollectionList.GetValue(key);
+        if (obj == null) obj = TempCollectionList.GetValue(key);
         return obj;
     }
 
@@ -209,8 +211,8 @@ public class AsyncResult
     //结果集合(类型1) 
     public Dictionary<string, Object> result = new Dictionary<string, Object>();
 
-    //结果集合(类型2) 
-    public Object[] resultAll = new Object[] { };
+    ////结果集合(类型2) 
+    //public Object[] resultAll = new Object[] { };
 
 
     /// <summary>

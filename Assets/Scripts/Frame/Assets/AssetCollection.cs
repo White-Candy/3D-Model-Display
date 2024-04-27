@@ -51,7 +51,7 @@ public class AssetCollection : MonoBehaviour
         //类型
         public AssetType type;
 
-        //资源
+        //资源实例
         public Object obj;
 
         //资源列表
