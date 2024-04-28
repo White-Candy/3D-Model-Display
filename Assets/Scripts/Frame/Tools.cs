@@ -42,4 +42,30 @@ public static class Tools
     {
         return "file://" + path;
     }
+
+    // ≤È’“√Ê∞Â
+    public static T FindAssetPanel<T>() where T : BasePanel
+    {
+        T t = UIConsole.Instance.FindPanel<T>();
+        if (t == null)
+        {
+            GameObject go = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/UI/" + typeof(T).ToString()));
+            t = go.GetComponent<T>();
+            go.name = typeof(T).ToString();
+            if (t is IGlobalPanel)
+            {
+                go.transform.SetParent(GlobalCanvas.Instance.transform);
+            }
+            else
+            {
+                go.transform.SetParent(GameObject.Find("Canvas/").transform);
+            }
+
+            go.transform.localScale = Vector3.one;
+            RectTransform rect = go.transform as RectTransform;
+            rect.offsetMax = Vector3.zero;
+            rect.offsetMin = Vector3.zero;
+        }
+        return t;
+    }
 }

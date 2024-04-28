@@ -14,6 +14,8 @@ public class ModelAction : BaseAction
 
     public Dictionary<string, GameObject> m_ModelPartDic = new Dictionary<string, GameObject>();
 
+    private ModelPanel m_Panel;
+
     public static ModelAction Get()
     {
         if (instance == null)
@@ -38,7 +40,12 @@ public class ModelAction : BaseAction
         throw new System.NotImplementedException();
     }
 
-    private void ModelDisplay(string name)
+    public List<string> GetModelsName()
+    {
+        return m_ModelPartDic.Keys.ToList();
+    }
+
+    public void OnMoudelItemCilcked(string name)
     {
         Debug.Log("ModelDisplay: " + name);
         if (currentModel != null)
@@ -55,7 +62,15 @@ public class ModelAction : BaseAction
     private IEnumerator InitAsset()
     {
         yield return MonoMgr.Instance.StartCoroutine(LoadAsset());
-        ModelDisplay(m_ModelPartDic.First().Key);
+        //ModelDisplay(m_ModelPartDic.First().Key);
+        if (m_ModelPartDic.Count == 0)
+        {
+            yield break;
+        }
+        m_Panel = Tools.FindAssetPanel<ModelPanel>();
+        m_Panel.OnBtnCilcked = OnMoudelItemCilcked; // 绑定点击事件到ModelPanel Item上
+        m_Panel.InitPanel(this);
+        m_Panel.Active(true);
     }
 
     private IEnumerator LoadAsset()
