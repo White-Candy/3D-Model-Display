@@ -1,1 +1,1 @@
-![image](https://raw.githubusercontent.com/3D-Model-Display/ReBirth/main/Img/DisPlay.gif)
+![image](./Img/Display.gif)
