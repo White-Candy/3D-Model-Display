@@ -8,6 +8,6 @@ public class LoadAsset : MonoBehaviour
     void Start()
     {
         //ModelAction.Get().Show();
-        //StructureAction.Get().Show();
+        StructureAction.Get().Show();
     }
 }

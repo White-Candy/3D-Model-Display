@@ -26,5 +26,6 @@ public class ModelHighLightCol : MonoBehaviour
     {
         m_Outlinable.enabled = false;
         //m_Outlinable.OutlineParameters.DOKill(true);
+        m_Outlinable.OutlineParameters.DOKill(true);
     }
 }
