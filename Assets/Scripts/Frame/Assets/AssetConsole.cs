@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -117,6 +118,49 @@ public class AssetConsole : Singleton<AssetConsole>
     public AsyncResult LoadBundle<T>(string path, string name, bool isTemp = true)
     {
        return LoadBundle(path, isTemp, new AssetInfo(typeof(T), name));
+    }
+
+
+    /// <summary>
+    /// ∂¡»°AssetBundle¿Ô√ÊGameObject
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="name"></param>
+    /// <param name="isTemp"></param>
+    /// <returns></returns>
+    public AsyncResult LoadBundleGameObject(string path, string name, bool isTemp = true)
+    {
+        AsyncResult result = new AsyncResult();
+
+        StartCoroutine(StartLoadBundleGameObject(path, name, isTemp, result));
+
+        return result;
+    }
+
+    private IEnumerator StartLoadBundleGameObject(string path, string name, bool isTemp, AsyncResult result, CancellationTokenSource cts = null)
+    {
+        AsyncResult async = LoadBundle<GameObject>(path, name, isTemp);
+        result.isDone = async.isDone;
+        result.progress = async.progress;
+
+        while (!async.isDone) 
+        {
+            result.isDone = async.isDone;
+            result.progress = async.progress;
+            yield return result;
+        }
+
+        if (cts != null && cts.IsCancellationRequested)
+        {
+            yield break;
+        }
+
+        string key = typeof(GameObject).ToString() + "_" + name;
+        GameObject go = GameObject.Instantiate(async.result[key]) as GameObject;
+        go.name = name;
+        result.result[key] = go;
+        result.isDone = true;
+        result.progress = 1f;
     }
 }
 

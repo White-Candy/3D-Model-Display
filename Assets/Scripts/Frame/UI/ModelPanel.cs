@@ -11,6 +11,7 @@ public class ModelPanel : BasePanel
     public Action<string> OnBtnCilcked = (str) => { };
 
     private ModelAction m_ModelAction;
+    private StructureAction m_StructureAction;
 
     public GameObject m_ModelItem;
     public Transform m_ModelParent;
@@ -20,6 +21,12 @@ public class ModelPanel : BasePanel
     {
         m_ModelAction = modelAction;
         SpawnItem(m_ModelAction.GetModelsName());
+    }
+
+    public void InitPanel(StructureAction structureAction)
+    {
+        m_StructureAction = structureAction;
+        SpawnItem(m_StructureAction.m_StructureNameList);
     }
 
     public void SpawnItem(List<string> items)

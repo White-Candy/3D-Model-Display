@@ -5,7 +5,6 @@ using UnityEngine;
 public static class StaticData
 {
     private static string assetRootPath;
-    public static string currentModuleCode = "Modules";
 
     public static string AssetRootPath
     {
@@ -25,7 +24,23 @@ public static class StaticData
     {
         get
         {
-            return $"{AssetRootPath}/Data/{currentModuleCode}";
+            return $"{AssetRootPath}/Data/Modules";
+        }
+    }
+
+    public static string StructurePath
+    {
+        get
+        {
+            return $"{AssetRootPath}/Data/Modules/Structure";
+        }
+    }
+
+    public static string StructureName
+    {
+        get
+        {
+            return "Structure";
         }
     }
 }
