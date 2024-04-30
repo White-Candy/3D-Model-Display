@@ -20,12 +20,25 @@ public class ModelHighLightCol : MonoBehaviour
     }
 
     /// <summary>
+    /// 打开高亮
+    /// </summary>
+    public void OnHighLight()
+    {
+        m_Outlinable.enabled = false;
+        m_Outlinable.OutlineParameters.DOColor(Color.red, .5f).SetLoops(3, LoopType.Yoyo).onComplete += () =>
+        {
+            m_Outlinable.enabled = false;
+            m_Outlinable.OutlineParameters.Color = m_OutlineableInitColor;
+        };
+    }
+
+    /// <summary>
     /// 停止高亮
     /// </summary>
     public void OffHighLight()
     {
         m_Outlinable.enabled = false;
-        //m_Outlinable.OutlineParameters.DOKill(true);
         m_Outlinable.OutlineParameters.DOKill(true);
+        m_Outlinable.OutlineParameters.Color = m_OutlineableInitColor;
     }
 }

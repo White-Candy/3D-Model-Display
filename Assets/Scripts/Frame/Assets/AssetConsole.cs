@@ -143,7 +143,7 @@ public class AssetConsole : Singleton<AssetConsole>
         result.isDone = async.isDone;
         result.progress = async.progress;
 
-        while (!async.isDone) 
+        while (!async.isDone)
         {
             result.isDone = async.isDone;
             result.progress = async.progress;

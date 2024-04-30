@@ -15,7 +15,7 @@ public class ModelMatCol : MonoBehaviour
     {
         m_MeshRender = GetComponent<MeshRenderer>();
         m_DefultMat = m_MeshRender.materials;
-        m_TransparentMat = Resources.Load<Material>("Equi/Materias/TransparentMat");
+        m_TransparentMat = Resources.Load<Material>("Structure/Material/TransparentMat");
     }
 
     public void Transparent()
@@ -26,5 +26,13 @@ public class ModelMatCol : MonoBehaviour
             mats[i] = m_TransparentMat;
         }
         m_MeshRender.materials = mats;
+    }
+
+    /// <summary>
+    /// 还原模型材质
+    /// </summary>
+    public void Revert()
+    {
+        m_MeshRender.materials = m_DefultMat;
     }
 }

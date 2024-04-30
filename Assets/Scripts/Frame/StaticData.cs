@@ -32,7 +32,7 @@ public static class StaticData
     {
         get
         {
-            return $"{AssetRootPath}/Data/Modules/Structure";
+            return $"{AssetRootPath}/Data/Structures";
         }
     }
 
@@ -40,7 +40,7 @@ public static class StaticData
     {
         get
         {
-            return "Structure";
+            return "10001";
         }
     }
 }

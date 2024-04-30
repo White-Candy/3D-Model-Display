@@ -33,6 +33,7 @@ public class ModelPanel : BasePanel
     {
         foreach (string item in items)
         {
+            //Debug.Log("========== Item name: " + item);
             GameObject obj = GameObject.Instantiate(m_ModelItem, m_ModelParent);
             obj.SetActive(true);
 

@@ -54,5 +54,11 @@ public class ModelMgr : MonoBehaviour
         {
             item.OffHighLight();
         }
+
+        GameObject go;
+        m_ModelDic.TryGetValue(name, out go);
+        go?.GetComponent<ModelMatCol>().Revert();
+        go?.GetComponent<ModelHighLightCol>().OnHighLight();
+        CameraMovementController.Instance.UpdateData(go != null ? go.transform : null);
     }
 }

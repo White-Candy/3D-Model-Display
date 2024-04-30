@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class StructureAction : BaseAction
 {
-    private static ModelAction instance;
+    private static StructureAction instance;
 
     private ModelPanel m_Panel;
     private ModelMgr m_Mgr;
     public List<string> m_StructureNameList = new List<string>();
 
-    public static ModelAction Get()
+    public static StructureAction Get()
     {
         if (instance == null)
         {
-            instance = new ModelAction();
+            instance = new StructureAction();
         }
         return instance;
     }
@@ -23,6 +23,7 @@ public class StructureAction : BaseAction
     {
         MonoMgr.Instance.StartCoroutine(LoadAsset());
         m_Panel = Tools.FindAssetPanel<ModelPanel>();
+        //m_Panel.Active(true);
     }
 
     public override void Exit()
@@ -38,7 +39,6 @@ public class StructureAction : BaseAction
     IEnumerator LoadAsset()
     {
         AsyncResult result = AssetConsole.Instance.LoadBundleGameObject(StaticData.StructurePath + "/" + StaticData.StructureName, StaticData.StructureName, true);
-
         while (!result.isDone)
         {
             yield return null;
@@ -47,11 +47,12 @@ public class StructureAction : BaseAction
         GameObject go = result.LoadAsset<GameObject>(StaticData.StructureName);
         if (go != null)
         {
-            ModelMgr Manager = go.GetComponent<ModelMgr>();
+            ModelMgr Manager = go.AddComponent<ModelMgr>();
             m_Mgr = Manager;
             m_StructureNameList = Manager.GetStructureNameList();
             m_Panel.InitPanel(this);
             m_Panel.OnBtnCilcked = PanelItemCilcked;
+            CameraMovementController.Instance.UpdateData(go.transform);
         }
     }
 
